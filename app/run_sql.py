@@ -1,5 +1,4 @@
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import psycopg
 
 DB_NAME = "simple_rest"
 DB_USER = "root"
@@ -13,12 +12,12 @@ def run_sql(sql, call = ''):
     results = []
 
     try:
-        conn=psycopg2.connect(database=DB_NAME,
+        conn=psycopg.connect(dbname=DB_NAME,
                         user=DB_USER,
                         password=DB_PASS,
                         host=DB_HOST,
                         port=DB_PORT)
-        cur = conn.cursor(cursor_factory=RealDictCursor)
+        cur = conn.cursor(row_factory=psycopg.rows.dict_row)
         print(sql.as_string(cur))
         cur.execute(sql)
         conn.commit()
@@ -30,7 +29,7 @@ def run_sql(sql, call = ''):
         else:
             print('no need')
         cur.close()
-    except (Exception, psycopg2.DatabaseError) as error:
+    except (Exception, psycopg.DatabaseError) as error:
         print("Error in transction Reverting all other operations of a transction ", error)
         conn.rollback()
     finally:

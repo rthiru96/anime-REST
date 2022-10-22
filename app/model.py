@@ -1,4 +1,4 @@
-from psycopg2 import sql
+from psycopg import sql
 from .run_sql import run_sql
 
 class Anime:
@@ -65,6 +65,7 @@ class Anime:
         """
 
         get = run_sql(query,'fetchall')
+        print("AAA", get)
 
         return get
 
