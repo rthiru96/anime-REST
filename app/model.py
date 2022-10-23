@@ -60,14 +60,16 @@ class Anime:
     def get_animes():
 
         query = """
-            SELECT *
+            SELECT id, anime, released_date, seasons
             FROM anime;
         """
 
-        get = run_sql(query,'fetchall')
-        print("AAA", get)
+        results_return = run_sql(query,'fetchall')
+        print(results_return)
 
-        return get
+        return results_return
+
+
 
     @staticmethod
     def get_animes_by_id(id):

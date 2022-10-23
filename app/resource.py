@@ -12,9 +12,8 @@ class AnimeResource(object):
 
     def on_get(self,req,resp):
         obj = OrderedDict()
-        contacts = Anime.get_animes()
-        print(contacts,"tesr")
-        obj = [contact.to_dict() for contact in contacts]
+        animes = Anime.get_animes()
+        obj = [contact for contact in animes]
         resp.body = json.dumps(obj)
         resp.status=falcon.HTTP_200
 

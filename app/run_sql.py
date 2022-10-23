@@ -18,7 +18,7 @@ def run_sql(sql, call = ''):
                         host=DB_HOST,
                         port=DB_PORT)
         cur = conn.cursor(row_factory=psycopg.rows.dict_row)
-        print(sql.as_string(cur))
+        # print(sql,"mmmm")
         cur.execute(sql)
         conn.commit()
 
